@@ -1,0 +1,703 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   《长征征途》视觉系统
+   设计取向：暗场“星火”基调 + 朱红/赤金点缀，突出地图与史料文本的可读性。
+   字体全部使用系统字体，不依赖网络字体，保证离线演示环境下观感稳定。
+   ========================================================================== */
+
+/* 颜色令牌以普通 CSS 自定义属性声明，而不使用 Tailwind 的 @theme：
+   @theme 变量是否输出取决于构建期的使用分析，而本作品的配色全部写在语义化类里，
+   不通过 Tailwind 颜色工具类消费，因此必须由自身显式声明，避免构建后被裁掉导致配色失效。 */
+:root {
+  --color-ink-950: #0a0608;
+  --color-ink-900: #0b1219;
+  --color-ink-800: #111b25;
+  --color-ink-700: #1a2733;
+  --color-ink-600: #24333f;
+  --color-mist-100: #e8eef4;
+  --color-mist-300: #b9c6d3;
+  --color-mist-500: #8b9aa9;
+  --color-mist-600: #6b7a89;
+  --color-flag-500: #d92b3a;
+  --color-flag-400: #e5484d;
+  --color-flag-300: #ff7b72;
+  --color-gold-400: #d4af37;
+  --color-gold-300: #e8c766;
+
+  --panel-bg: rgba(24, 14, 17, 0.84);
+  --panel-bg-solid: #160f12;
+  --panel-border: rgba(180, 152, 158, 0.2);
+  --panel-border-strong: rgba(205, 172, 178, 0.32);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --font-sans: 'PingFang SC', 'HarmonyOS Sans SC', 'Source Han Sans SC', 'Noto Sans SC',
+    'Microsoft YaHei', 'Hiragino Sans GB', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Songti SC', 'Source Han Serif SC', 'Noto Serif SC', 'SimSun', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-ink-950);
+  color: var(--color-mist-100);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+/* ---------- 全局背景：远山与星火的暗场氛围 ---------- */
+.app-shell {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* 红黑基调：多处红色径向光叠加在暗红底上，呼应“星火/红旗”的意象。
+     地图要素本身仍保持冷色，靠色相差异保证省份边界与文字的可读性。 */
+  background:
+    radial-gradient(1200px 640px at 80% -12%, rgba(217, 43, 58, 0.36), transparent 64%),
+    radial-gradient(1000px 560px at 2% 104%, rgba(150, 28, 40, 0.3), transparent 62%),
+    radial-gradient(1700px 900px at 50% 120%, rgba(217, 43, 58, 0.18), transparent 72%),
+    radial-gradient(900px 480px at 12% -6%, rgba(212, 175, 55, 0.08), transparent 60%),
+    linear-gradient(180deg, #120709 0%, #170a0e 44%, #0b0507 100%);
+}
+
+.app-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 42%, #000 20%, transparent 78%);
+  z-index: 0;
+}
+
+.app-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 通用面板 ---------- */
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-lg);
+}
+
+.panel--solid {
+  background: var(--panel-bg-solid);
+}
+
+.panel-title {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--color-mist-500);
+  text-transform: uppercase;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+/* ---------- 文字 ---------- */
+.text-dim {
+  color: var(--color-mist-500);
+}
+
+.text-body {
+  color: var(--color-mist-300);
+}
+
+.lede {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #cdd9e5;
+}
+
+.prose-cn {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: #c6d3e0;
+  text-align: justify;
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border-strong);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-mist-100);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(200, 220, 240, 0.45);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  border-color: rgba(229, 72, 77, 0.6);
+  background: linear-gradient(180deg, rgba(217, 43, 58, 0.95), rgba(160, 24, 36, 0.95));
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(217, 43, 58, 0.3);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #e5484d, #b02234);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-mist-300);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: transparent;
+  color: #fff;
+}
+
+.btn--sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* ---------- 难度星级 ---------- */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+}
+
+.stars__cell {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+}
+
+.stars__base {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.17);
+}
+
+/* 半星：用裁切容器限制实心星的可见宽度 */
+.stars__clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  line-height: 1;
+  color: var(--color-gold-400);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.stars--sm {
+  font-size: 13px;
+}
+
+.stars--md {
+  font-size: 17px;
+}
+
+.stars--lg {
+  font-size: 24px;
+}
+
+/* ---------- 地图舞台 ---------- */
+.map-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+}
+
+.map-stage__canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 起点脉冲标记（首页） ---------- */
+.start-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--pin-color, #e5484d);
+  background: rgba(8, 13, 19, 0.86);
+  box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.5), 0 10px 26px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 13px;
+  animation: pin-pulse 2.6s ease-out infinite;
+  transition: transform 0.2s ease, background 0.2s ease;
+  z-index: 4;
+}
+
+.start-pin:hover,
+.start-pin:focus-visible {
+  transform: translate(-50%, -50%) scale(1.06);
+  background: rgba(16, 24, 33, 0.96);
+  outline: none;
+}
+
+.start-pin__dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  background: var(--pin-color, #e5484d);
+  box-shadow: 0 0 14px var(--pin-color, #e5484d);
+}
+
+.start-pin__army {
+  font-size: 11px;
+  color: var(--color-mist-500);
+  letter-spacing: 0.02em;
+}
+
+@keyframes pin-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.42), 0 10px 26px rgba(0, 0, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(229, 72, 77, 0), 0 10px 26px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 72, 77, 0), 0 10px 26px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ---------- 部队选择卡片 ---------- */
+.army-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 16px 16px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-border);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+}
+
+.army-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--card-color, #e5484d);
+  opacity: 0.85;
+}
+
+.army-card:hover {
+  border-color: var(--card-color, #e5484d);
+  transform: translateY(-2px);
+}
+
+.army-card--active {
+  border-color: var(--card-color, #e5484d);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 0 0 1px var(--card-color, #e5484d) inset;
+}
+
+.army-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.army-card__name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.army-card__alias {
+  font-size: 12px;
+  color: var(--color-mist-500);
+}
+
+.army-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 8px 0 8px;
+  font-size: 12px;
+  color: var(--color-mist-500);
+}
+
+.army-card__note {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: #b6c4d2;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-mist-300);
+}
+
+.tag--accent {
+  /* 先给不支持 color-mix 的浏览器一个静态回退色，再由 color-mix 覆盖为随部队主题色变化 */
+  border-color: rgba(229, 72, 77, 0.55);
+  border-color: color-mix(in srgb, var(--card-color, #e5484d) 55%, transparent);
+  color: #fff;
+  background: rgba(229, 72, 77, 0.26);
+  background: color-mix(in srgb, var(--card-color, #e5484d) 26%, transparent);
+}
+
+/* ---------- 节点详情卡 ---------- */
+.node-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.node-kind {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 11.5px;
+  line-height: 1.15;
+  text-align: center;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(154, 167, 180, 0.6);
+  border: 1px solid color-mix(in srgb, var(--kind-color, #9aa7b4) 60%, transparent);
+  background: rgba(154, 167, 180, 0.2);
+  background: color-mix(in srgb, var(--kind-color, #9aa7b4) 20%, transparent);
+}
+
+.node-card__name {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.node-card__place {
+  font-size: 12.5px;
+  color: var(--color-mist-500);
+  margin-top: 3px;
+}
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+
+.fact {
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.fact__k {
+  font-size: 11px;
+  color: var(--color-mist-500);
+  letter-spacing: 0.06em;
+}
+
+.fact__v {
+  font-size: 13.5px;
+  color: #e6eef6;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ---------- 模态框 ---------- */
+.modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(4, 7, 11, 0.74);
+  backdrop-filter: blur(6px);
+  animation: fade-in 0.22s ease;
+}
+
+.modal {
+  width: min(760px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  animation: rise-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-300);
+}
+
+.fact-point {
+  position: relative;
+  padding: 12px 14px 12px 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 14px;
+  line-height: 1.95;
+  color: #d3dfeb;
+  text-align: justify;
+}
+
+.fact-point__no {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1b1205;
+  background: linear-gradient(180deg, var(--color-gold-300), var(--color-gold-400));
+}
+
+.callout {
+  border-left: 3px solid var(--color-gold-400);
+  background: rgba(212, 175, 55, 0.09);
+  padding: 12px 14px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #f0e2b8;
+}
+
+.callout--danger {
+  border-left-color: var(--color-flag-400);
+  background: rgba(229, 72, 77, 0.1);
+  color: #ffd9d6;
+}
+
+/* ---------- 抽屉 / 侧栏 ---------- */
+.drawer-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(4, 7, 11, 0.6);
+  backdrop-filter: blur(4px);
+  animation: fade-in 0.2s ease;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 100%);
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--panel-border);
+  background: var(--panel-bg-solid);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.55);
+  animation: slide-left 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.drawer__body {
+  flex: 1;
+  overflow: auto;
+  padding: 0 20px 28px;
+}
+
+.source-item {
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(140, 165, 190, 0.18);
+}
+
+.source-item:last-child {
+  border-bottom: none;
+}
+
+/* ---------- 滚动条 ---------- */
+.scroll-area {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 165, 190, 0.35) transparent;
+}
+
+.scroll-area::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(140, 165, 190, 0.3);
+  border-radius: 999px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 动画 ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(24px);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-rise {
+  animation: rise-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 尊重系统“减少动态效果”偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- 移动端：底部抽屉式详情，避免拖拽操作 ---------- */
+@media (max-width: 860px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .node-card--sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    max-height: 62vh;
+    overflow: auto;
+    border-radius: 18px 18px 0 0;
+    animation: slide-up 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (min-width: 861px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
