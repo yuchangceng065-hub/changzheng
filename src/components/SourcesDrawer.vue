@@ -1,153 +1,101 @@
 <script setup>
-import { computed } from 'vue'
-import { DISCLAIMERS, SOURCES, getSource } from '../data/sources.js'
-
-const props = defineProps({
-  open: { type: Boolean, default: false },
-  baseMap: { type: Object, default: null },
-  army: { type: Object, default: null }
-})
-
+import { nextTick, ref, watch } from 'vue'
+import { SOURCES } from '../data/sources.js'
+import { MUSIC } from '../data/music.js'
+import { SPIRIT_VIDEO } from '../data/spiritVideo.js'
+const props = defineProps({ open: Boolean, baseMap: Object })
 const emit = defineEmits(['close'])
-
-const integrity = computed(() => (props.baseMap && props.baseMap.integrity) || null)
-const mapSources = computed(() => (props.baseMap && props.baseMap.sources) || null)
-const armySources = computed(() =>
-  props.army ? props.army.sources.map(getSource) : []
-)
+const books = SOURCES.filter(source => !source.url)
+const websites = SOURCES.filter(source => source.url)
+const spiritSources = [
+  { title: '弘扬长征精神 奋进新时代新征程', publisher: '求是网 · 青海日报 · 2026年6月1日', url: 'https://www.qstheory.cn/20260601/94c99cb8be5246ebad8e076fa58fb065/c.html' },
+  { title: '伟大长征精神', publisher: '共产党员网', url: 'https://www.12371.cn/special/zgjs/czjs/' }
+]
+const closeButton = ref(null)
+let opener
+watch(() => props.open, async open => {
+  if (open) {
+    opener = document.activeElement
+    await nextTick()
+    closeButton.value?.focus()
+  } else opener?.focus()
+})
+function trapFocus(event) {
+  if (event.key !== 'Tab') return
+  const controls = event.currentTarget.querySelectorAll('button, a[href]')
+  const first = controls[0], last = controls[controls.length - 1]
+  if (event.shiftKey && event.target === first) { event.preventDefault(); last.focus() }
+  else if (!event.shiftKey && event.target === last) { event.preventDefault(); first.focus() }
+}
 </script>
 
 <template>
   <template v-if="open">
     <div class="drawer-mask" @click="emit('close')" />
-    <aside class="drawer" role="dialog" aria-modal="true" aria-label="资料来源与数据口径">
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="sources-title" @keydown="trapFocus">
       <header class="flex items-start justify-between gap-3 px-5 py-4">
-        <div>
-          <p class="panel-title">资料来源与数据口径</p>
-          <h2 class="serif mt-1 text-xl font-bold">史实注记 · 底图声明</h2>
-        </div>
-        <button class="btn btn--ghost btn--sm" type="button" @click="emit('close')">✕</button>
+        <h2 id="sources-title" class="serif text-xl">参考资料</h2>
+        <button ref="closeButton" class="btn btn--ghost btn--sm" type="button" aria-label="关闭参考资料" @click="emit('close')">✕</button>
       </header>
-
       <div class="drawer__body scroll-area">
-        <!-- 底图 -->
-        <section class="mb-6">
-          <p class="panel-title mb-2">地图底图与领土完整性自检</p>
-
-          <div v-if="mapSources" class="source-item">
-            <p class="text-body text-[13px] leading-relaxed">
-              {{ mapSources.description }}
-            </p>
-            <p v-if="mapSources.publisher" class="text-dim mt-1 text-[12px]">
-              数据提供：{{ mapSources.publisher }}
-            </p>
-            <p v-if="mapSources.url" class="mt-1 text-[12px]">
-              <a :href="mapSources.url" target="_blank" rel="noopener noreferrer">
-                {{ mapSources.url }}
-              </a>
-            </p>
-            <p v-if="mapSources.standardMapNote" class="text-dim mt-2 text-[12px] leading-relaxed">
-              {{ mapSources.standardMapNote }}
-            </p>
-          </div>
-          <div v-else class="source-item">
-            <p class="text-body text-[13px]">未找到底图来源声明文件（public/map/sources.json）。</p>
-          </div>
-
-          <div v-if="integrity" class="fact-grid mt-3">
-            <div class="fact">
-              <div class="fact__k">底图要素数</div>
-              <div class="fact__v">{{ integrity.featureCount }}</div>
-            </div>
-            <div class="fact">
-              <div class="fact__k">台湾省</div>
-              <div class="fact__v" :style="{ color: integrity.hasTaiwan ? '#7bd88f' : '#ff7b72' }">
-                {{ integrity.hasTaiwan ? '已包含 ✓' : '未检测到 ✗' }}
-              </div>
-            </div>
-            <div class="fact">
-              <div class="fact__k">海南省</div>
-              <div class="fact__v" :style="{ color: integrity.hasHainan ? '#7bd88f' : '#ff7b72' }">
-                {{ integrity.hasHainan ? '已包含 ✓' : '未检测到 ✗' }}
-              </div>
-            </div>
-            <div class="fact">
-              <div class="fact__k">南海诸岛插图</div>
-              <div
-                class="fact__v"
-                :style="{ color: integrity.hasNanhaiFeature ? '#7bd88f' : '#ff7b72' }"
-              >
-                {{ integrity.hasNanhaiFeature ? '已包含 ✓' : '未检测到 ✗' }}
-              </div>
-            </div>
-            <div class="fact">
-              <div class="fact__k">九段线（线状要素）</div>
-              <div
-                class="fact__v"
-                :style="{ color: integrity.dashConfirmed ? '#7bd88f' : '#e8c766' }"
-              >
-                {{ integrity.dashConfirmed ? '已检测到' : '需人工确认' }}
-              </div>
-            </div>
-            <div class="fact">
-              <div class="fact__k">补充要素</div>
-              <div class="fact__v">{{ integrity.supplementUsed ? '已启用' : '未启用' }}</div>
-            </div>
-          </div>
-
-          <p
-            v-if="integrity && integrity.matchedNames && integrity.matchedNames.length"
-            class="text-dim mt-2 text-[12px]"
-          >
-            命中要素：{{ integrity.matchedNames.join('、') }}
-          </p>
-
-          <p v-if="integrity && !integrity.hasNanhaiFeature" class="callout callout--danger mt-3">
-            当前底图未检测到“南海诸岛”插图要素，领土表示不完整。请更换为符合自然资源部标准地图要求的底图，或补充
-            <code>public/map/nanhai.json</code>，否则不得用于展示或参赛。
-          </p>
-
-          <p v-else-if="integrity && integrity.needsManualDashCheck" class="callout mt-3">
-            底图中未检测到线状几何，因此<b>无法由数据自动确认“九段线”是否完整表示</b>。请在地图上放大南海方向
-            <b>目视核对九段线</b>；如缺失，请更换底图或补充 <code>public/map/nanhai.json</code>。本作品不臆断为合规。
-          </p>
-        </section>
-
-        <!-- 数据口径 -->
-        <section class="mb-6">
-          <p class="panel-title mb-2">数据口径说明</p>
-          <div v-for="d in DISCLAIMERS" :key="d.id" class="source-item">
-            <p class="text-[13.5px] font-semibold">{{ d.title }}</p>
-            <p class="text-body mt-1 text-[12.5px] leading-relaxed">{{ d.text }}</p>
-          </div>
-        </section>
-
-        <!-- 当前部队来源 -->
-        <section v-if="armySources.length" class="mb-6">
-          <p class="panel-title mb-2">当前部队（{{ army.name }}）史实依据</p>
-          <div v-for="s in armySources" :key="s.id" class="source-item">
-            <p class="text-[13.5px]">{{ s.title }}</p>
-            <p v-if="s.publisher" class="text-dim text-[12px]">{{ s.publisher }}</p>
-            <p v-if="s.note" class="text-dim mt-1 text-[12px] leading-relaxed">{{ s.note }}</p>
-          </div>
-        </section>
-
-        <!-- 全部来源 -->
         <section>
-          <p class="panel-title mb-2">全部史实资料来源</p>
-          <div v-for="s in SOURCES" :key="s.id" class="source-item">
-            <p class="text-[13.5px]">{{ s.title }}</p>
-            <p v-if="s.publisher" class="text-dim text-[12px]">{{ s.publisher }}</p>
-            <p v-if="s.url" class="text-[12px]">
-              <a :href="s.url" target="_blank" rel="noopener noreferrer">{{ s.url }}</a>
-            </p>
-            <p v-if="s.note" class="text-dim mt-1 text-[12px] leading-relaxed">{{ s.note }}</p>
+          <h3 class="panel-title mb-2">纸质文献</h3>
+          <div v-for="source in books" :key="source.id" class="source-item">
+            <p class="source-title">{{ source.title }}</p>
+            <p v-if="source.publisher" class="source-meta">{{ source.publisher }}</p>
           </div>
-          <p class="text-dim mt-3 text-[11.5px] leading-relaxed">
-            注：本作品的史实表述均依据公开出版的权威党史、军史著作与官方机构发布内容整理；出版版本与页码以正式出版物为准。如用于正式参赛或公开出版，请以自然资源部标准地图服务网站（bzdt.ch.mnr.gov.cn）发布的带审图号标准地图为准。
-          </p>
+        </section>
+        <section class="mt-5">
+          <h3 class="panel-title mb-2">党史网站</h3>
+          <a v-for="source in websites" :key="source.id" class="source-item source-link" :href="source.url" target="_blank" rel="noopener noreferrer">
+            <span class="source-title">{{ source.title }}</span>
+            <span class="source-meta">访问网站 <span aria-hidden="true">↗</span></span>
+          </a>
+        </section>
+        <section class="mt-5">
+          <h3 class="panel-title mb-2">长征精神</h3>
+          <a v-for="source in spiritSources" :key="source.url" class="source-item source-link" :href="source.url" target="_blank" rel="noopener noreferrer">
+            <span class="source-title">{{ source.title }} <span class="source-arrow" aria-hidden="true">↗</span></span>
+            <span class="source-meta">{{ source.publisher }}</span>
+          </a>
+        </section>
+        <section v-if="baseMap?.sources" class="mt-5">
+          <h3 class="panel-title mb-2">地图</h3>
+          <p v-if="baseMap.sources.sourceOnlineMapReviewNumber" class="source-title">天地图在线底图审图号：{{ baseMap.sources.sourceOnlineMapReviewNumber }}</p>
+          <p class="source-meta">{{ baseMap.sources.sourceOnlineMapReviewScope }}</p>
+          <p class="source-meta">{{ baseMap.sources.reviewStatus }}</p>
+          <a v-if="baseMap.sources.sourceDocumentation" class="source-item source-link" :href="baseMap.sources.sourceDocumentation" target="_blank" rel="noopener noreferrer">
+            <span class="source-title">底图官方来源说明 <span class="source-arrow" aria-hidden="true">↗</span></span>
+            <span class="source-meta">{{ baseMap.sources.sourceNotice }}</span>
+          </a>
+          <a v-for="source in [baseMap.sources, baseMap.sources.terrain, baseMap.sources.coordinates].filter(Boolean)" :key="source.url" class="source-item source-link" :href="source.url" target="_blank" rel="noopener noreferrer">
+            <span class="source-title">{{ source.title }} <span class="source-arrow" aria-hidden="true">↗</span></span>
+            <span class="source-meta">{{ source.publisher }}<span v-if="source.license"> · {{ source.license }}</span></span>
+          </a>
+        </section>
+        <section v-if="MUSIC.src" class="mt-5">
+          <h3 class="panel-title mb-2">背景音乐</h3>
+          <p class="source-title">{{ MUSIC.title }} · {{ MUSIC.artist }}</p>
+          <p class="source-meta">{{ MUSIC.sourceLabel }}</p>
+        </section>
+        <section class="mt-5">
+          <h3 class="panel-title mb-2">长征精神视频</h3>
+          <a class="source-item source-link" :href="SPIRIT_VIDEO.source" target="_blank" rel="noopener noreferrer">
+            <span class="source-title">{{ SPIRIT_VIDEO.title }} ↗</span>
+            <span class="source-meta">本期讲师：{{ SPIRIT_VIDEO.speaker }}</span>
+            <span class="source-meta">{{ SPIRIT_VIDEO.publisher }} · {{ SPIRIT_VIDEO.fileProvider }}</span>
+          </a>
         </section>
       </div>
     </aside>
   </template>
 </template>
+
+<style scoped>
+.source-title { display: block; margin: 0; font-size: 13px; line-height: 1.8; }
+.source-meta { display: block; margin: 5px 0 0; color: var(--color-mist-500); font-size: 12px; line-height: 1.8; }
+.source-link { display: block; color: var(--color-mist-100); text-decoration: none; }
+.source-link:hover .source-title { color: var(--color-gold-300); text-decoration: underline; text-underline-offset: 4px; }
+.source-arrow { margin-left: 4px; color: var(--color-gold-300); font-size: 12px; }
+.source-review { display: block; margin-top: 7px; color: var(--color-gold-300); font-size: 12px; }
+</style>

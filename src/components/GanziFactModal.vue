@@ -31,13 +31,13 @@ const sources = GANZI_FACT.sources.map(getSource)
     <div class="modal panel panel--solid p-5 md:p-6">
       <div class="flex items-start justify-between gap-4">
         <div>
-          <p class="modal__eyebrow">★ 专题史实说明</p>
+          <p class="modal__eyebrow">专题说明</p>
           <h2 id="ganzi-fact-title" class="serif mt-1 text-2xl leading-snug font-bold">
             甘孜会师与红二方面军的组建
           </h2>
           <p class="text-dim mt-1 text-[13px]">{{ GANZI_FACT.subtitle }}</p>
           <p v-if="armyName" class="text-dim mt-1 text-[12px]">
-            触发位置：{{ armyName }} · 甘孜节点
+            相关部队：{{ armyName }} · 甘孜节点
           </p>
         </div>
         <button class="btn btn--ghost btn--sm" type="button" aria-label="关闭" @click="emit('close')">
@@ -52,13 +52,14 @@ const sources = GANZI_FACT.sources.map(getSource)
         </div>
       </div>
 
-      <p class="callout mt-4">{{ GANZI_FACT.conclusion }}</p>
+      
 
       <div class="mt-5">
         <p class="panel-title mb-2">史实来源</p>
         <ul class="flex flex-col gap-1 text-[12.5px] text-body">
           <li v-for="s in sources" :key="s.id">
-            · {{ s.title }}<span v-if="s.publisher">（{{ s.publisher }}）</span>
+            <span>{{ s.title }}</span>
+            <span v-if="s.publisher" class="text-dim"> · {{ s.publisher }}</span>
           </li>
         </ul>
       </div>
@@ -66,7 +67,7 @@ const sources = GANZI_FACT.sources.map(getSource)
       <div class="mt-5 flex items-center justify-between gap-3">
         <span class="text-dim text-[11.5px]">按 Esc 或点击空白处关闭</span>
         <button class="btn btn--primary" type="button" @click="emit('close')">
-          我已了解，继续行军
+          继续查看路线
         </button>
       </div>
     </div>

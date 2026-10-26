@@ -63,11 +63,11 @@ watch(
 <style scoped>
 .rail {
   flex: none;
-  padding: 9px 10px 10px;
+  padding: 6px 9px 3px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--panel-border);
   background: var(--panel-bg);
-  backdrop-filter: blur(14px);
+  backdrop-filter: none;
 }
 
 .rail__head {
@@ -75,7 +75,7 @@ watch(
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 7px;
+  margin-bottom: 3px;
 }
 
 .rail__count {
@@ -88,7 +88,7 @@ watch(
   align-items: flex-start;
   gap: 0;
   margin: 0;
-  padding: 2px 0 6px;
+  padding: 0 0 3px;
   list-style: none;
   overflow-x: auto;
   overflow-y: hidden;
@@ -114,7 +114,7 @@ watch(
 .rail__item::after {
   content: '';
   position: absolute;
-  top: 11px;
+  top: 10px;
   left: calc(50% + 12px);
   width: calc(100% - 24px);
   height: 1px;
@@ -131,11 +131,11 @@ watch(
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
   width: 74px;
-  padding: 3px 2px 5px;
+  padding: 2px 2px 3px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 3px;
   background: transparent;
   color: inherit;
   font-family: inherit;
@@ -156,11 +156,11 @@ watch(
 .rail__dot {
   display: grid;
   place-items: center;
-  width: 23px;
-  height: 23px;
+  width: 19px;
+  height: 19px;
   border-radius: 999px;
   font-size: 11px;
-  background: #12090d;
+  background: #1b1915;
   border: 1.5px solid var(--node-color, #9aa7b4);
   opacity: 0.45;
   transition: opacity 0.16s ease, box-shadow 0.16s ease;
@@ -168,8 +168,8 @@ watch(
 
 .rail__btn.is-reached .rail__dot {
   opacity: 1;
-  background: #24141a;
-  box-shadow: 0 0 10px rgba(217, 43, 58, 0.35);
+  background: #30241e;
+  box-shadow: none;
 }
 
 .rail__label {

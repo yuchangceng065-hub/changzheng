@@ -1,176 +1,1327 @@
 {
-  "_comment": "大事件配图清单。只有 reviewed:true 的条目会被显示，其余一律回退到 src/components/EventArtwork.vue 的手绘插画。使用步骤：1) 把图片按 file 字段命名放进本目录；2) 填写 title / author / license / source；3) 把 reviewed 改为 true。完整说明见 docs/配图清单.md 与同目录 README.md。",
-  "_recommendation": "圈定 13 个最值得配真实照片的节点（必备 8 + 建议 5），其余 77 个节点保持手绘插画即可。",
   "photos": {
     "r1-zunyi": {
-      "file": "r1-zunyi.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "遵义会议",
-      "place": "贵州遵义",
-      "shoot": "遵义会议会址（红楼）外景，或会议室内景",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "本作品最核心的史实节点（党的历史上生死攸关的转折点），强烈建议配图"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-zunyi-01.jpeg",
+          "title": "遵义会议档案",
+          "sourceLabel": "来源：光明日报"
+        },
+        {
+          "file": "red1/r1-zunyi-02.jpeg",
+          "title": "遵义会议会址正门",
+          "sourceLabel": "来源：中央纪委监察部网站"
+        },
+        {
+          "file": "red1/r1-zunyi-03.jpeg",
+          "title": "遵义会议会址楼",
+          "sourceLabel": "来源：中央纪委监察部网站"
+        },
+        {
+          "file": "red1/r1-zunyi-04.jpeg",
+          "title": "遵义会议会议室",
+          "sourceLabel": "来源：中央纪委监察部网站"
+        },
+        {
+          "file": "red1/r1-zunyi-05.jpeg",
+          "title": "红军总政治部旧址",
+          "sourceLabel": "来源：中央纪委监察部网站"
+        }
+      ]
     },
     "r1-luding": {
-      "file": "r1-luding.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "飞夺泸定桥",
-      "place": "四川泸定",
-      "shoot": "泸定桥全景：铁索横跨大渡河，能看出十三根铁索与桥面",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "画面最具辨识度的节点之一"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-luding-01.jpeg",
+          "title": "《飞夺泸定桥》油画 雷坦"
+        },
+        {
+          "file": "red1/r1-luding-02.png",
+          "title": "飞夺泸定桥"
+        }
+      ]
     },
     "r1-caodi": {
-      "file": "r1-caodi.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "过草地",
-      "place": "四川松潘·若尔盖",
-      "shoot": "松潘草地／若尔盖草原的沼泽地貌，或红军长征纪念碑碑园",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "长征精神的核心象征"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-caodi-01.jpeg",
+          "title": "红军过草地",
+          "sourceLabel": "油画 · 张文源作 · 中国人民革命军事博物馆藏"
+        }
+      ]
     },
     "r1-jiajinshan": {
-      "file": "r1-jiajinshan.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "翻越夹金山",
-      "place": "四川宝兴",
-      "shoot": "夹金山雪山与盘山公路，或红军翻越夹金山纪念馆",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "爬雪山意象的代表节点"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-jiajinshan-01.jpeg",
+          "title": "翻越夹金山"
+        },
+        {
+          "file": "red1/r1-jiajinshan-02.png",
+          "title": "翻越夹金山"
+        }
+      ]
     },
     "r1-xiangjiang": {
-      "file": "r1-xiangjiang.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "湘江战役",
-      "place": "广西全州·兴安",
-      "shoot": "湘江战役纪念园、红军长征湘江战役纪念馆，或界首渡口",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "长征以来最惨烈的一仗，减员最重"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-xiangjiang-01.jpeg",
+          "title": "湘江战役"
+        },
+        {
+          "file": "red1/r1-xiangjiang-02.jpeg",
+          "title": "湘江战役"
+        },
+        {
+          "file": "red1/r1-xiangjiang-03.jpeg",
+          "title": "湘江战役"
+        }
+      ]
     },
     "r1-chishui4": {
-      "file": "r1-chishui4.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "四渡赤水",
-      "place": "黔川滇边赤水河",
-      "shoot": "赤水河渡口（如元厚、土城渡口），或四渡赤水纪念馆",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "毛泽东军事指挥艺术的经典之作"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-chishui4-01.jpeg",
+          "title": "四渡赤水"
+        }
+      ]
     },
     "r26-ganzi": {
-      "file": "r26-ganzi.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "甘孜会师",
-      "place": "四川甘孜",
-      "shoot": "甘孜红军会师纪念地、会师雕塑或旧址",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "需求文档点名要求触发专题史实弹窗的节点，配图可强化这一处说明"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image25.jpg",
+          "title": "红2 6军团与红4方面军会师旧址──甘孜",
+          "sourceLabel": "来源：人民网",
+          "source": "http://politics.people.com.cn/BIG5/8198/68298/68303/4635211.html"
+        },
+        {
+          "file": "red26-red4/image26.jpg",
+          "title": "视觉四川 四川境内红军长征走过的地方,如今发生了哪些变化",
+          "sourceLabel": "来源：搜狐公众平台",
+          "source": "http://mt.sohu.com/20161020/n470826563.shtml"
+        },
+        {
+          "file": "red26-red4/image27.jpg",
+          "title": "为何没有红三方面军",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/236450315_730332"
+        },
+        {
+          "file": "red26-red4/image28.jpg",
+          "title": "第18期 红二方面军长征在贵州",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/omn/20210603/20210603A01D8Q00.html"
+        }
+      ]
     },
     "r4-huining": {
-      "file": "r4-huining.jpg",
-      "reviewed": false,
-      "priority": "必备",
-      "label": "会宁会师",
-      "place": "甘肃会宁",
-      "shoot": "会宁红军会师旧址（会师楼、会师纪念塔）",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "三大主力会师的标志性地点之一"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image80.jpg",
+          "title": "寻访烈士的足迹 参观会宁红军会师旧址",
+          "sourceLabel": "来源：每日甘肃网",
+          "source": "http://gansu.gansudaily.com.cn/system/2013/07/19/014511572.shtml"
+        },
+        {
+          "file": "red26-red4/image81.jpg",
+          "title": "会宁会师 中国革命从此翻开了新的一页",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/209443595_428290"
+        }
+      ]
     },
-
     "r1-yudu": {
-      "file": "r1-yudu.jpg",
-      "reviewed": false,
-      "priority": "建议",
-      "label": "于都出发",
-      "place": "江西于都",
-      "shoot": "中央红军长征出发地纪念园、于都河渡口或长征第一渡纪念碑",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "首页起点卡片也会用到这张图，放上后开篇观感提升明显"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-yudu-01.png",
+          "title": "红一方面军序列表",
+          "sourceLabel": "来源：抗日战争图书馆"
+        },
+        {
+          "file": "red1/r1-yudu-02.jpeg",
+          "title": "于都河渡口"
+        },
+        {
+          "file": "red1/r1-yudu-03.jpeg",
+          "title": "江西雩都于都河",
+          "sourceLabel": "来源：中国军网"
+        }
+      ]
     },
     "r1-wuqi": {
-      "file": "r1-wuqi.jpg",
-      "reviewed": false,
-      "priority": "建议",
-      "label": "到达吴起镇",
-      "place": "陕西吴起",
-      "shoot": "吴起镇革命旧址、中央红军长征胜利纪念园",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "中央红军长征胜利结束的标志地"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-wuqi-01.jpeg",
+          "title": "吴起镇会师",
+          "sourceLabel": "来源：百度"
+        },
+        {
+          "file": "red1/r1-wuqi-02.jpeg",
+          "title": "袁鹏飞油画《吴起大捷》"
+        },
+        {
+          "file": "red1/r1-wuqi-03.png",
+          "title": "到达吴起镇"
+        },
+        {
+          "file": "red1/r1-wuqi-04.jpeg",
+          "title": "到达吴起镇"
+        },
+        {
+          "file": "red1/r1-wuqi-05.jpeg",
+          "title": "到达吴起镇"
+        }
+      ]
     },
     "r26-jiangtaibao": {
-      "file": "r26-jiangtaibao.jpg",
-      "reviewed": false,
-      "priority": "建议",
-      "label": "将台堡会师",
-      "place": "宁夏西吉",
-      "shoot": "将台堡红军长征会师纪念园、会师纪念碑",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "红二方面军终点，与红一方面军会师"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image33.jpg",
+          "title": "走进将台堡红军长征会师纪念园 追寻红色记忆",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/J8K4RJPL0514R9KQ.html?f=post2020_dy_recommends"
+        },
+        {
+          "file": "red26-red4/image34.jpg",
+          "title": "走进将台堡红军长征会师纪念园 追寻红色记忆",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/J8K4RJPL0514R9KQ.html?f=post2020_dy_recommends"
+        },
+        {
+          "file": "red26-red4/image35.jpg",
+          "title": "八一建军节丨快来红色旅游景区打卡吧",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/480762142_440496"
+        },
+        {
+          "file": "red26-red4/image36.jpg",
+          "title": "单家集 红色精神代代传 新长征路谱新篇",
+          "sourceLabel": "来源：宁夏新闻网",
+          "source": "http://www.nxnews.net/yc/jrww/201609/t20160925_4131883.html"
+        }
+      ]
     },
     "r4-jiadingjiang": {
-      "file": "r4-jiadingjiang.jpg",
-      "reviewed": false,
-      "priority": "建议",
-      "label": "强渡嘉陵江",
-      "place": "四川苍溪",
-      "shoot": "苍溪红军渡纪念地：渡口、纪念雕塑或纪念馆",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "红四方面军长征出发地。红四方面军目前只有会宁一处必备图，建议补上起点"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image39.jpg",
+          "title": "红色旅游校园行采风线路一 红军烈士纪念园 苍溪红军渡",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/160326565_419114"
+        },
+        {
+          "file": "red26-red4/image39.jpg",
+          "title": "",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/rain/a/20210506A0C9SX00"
+        },
+        {
+          "file": "red26-red4/image40.jpg",
+          "title": "王树声组建水兵连,率红四方面军强渡嘉陵江",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/rain/a/20210729A092RA00"
+        },
+        {
+          "file": "red26-red4/image41.jpg",
+          "title": "都说川军打仗厉害 王树声如何轻松应对,强渡嘉陵江,攻破剑门关",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/519337005_120934881"
+        },
+        {
+          "file": "red26-red4/image37.jpg",
+          "title": "勉县开展庆祝建党97周年系列活动",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/238899968_99917878"
+        },
+        {
+          "file": "red26-red4/image38.jpg",
+          "title": "中共汉中党史网",
+          "source": "http://ds.hanzhong.gov.cn/hsly/201709/t20170922_445395.html"
+        }
+      ]
     },
     "r25-yongping": {
-      "file": "r25-yongping.jpg",
-      "reviewed": false,
-      "priority": "建议",
-      "label": "永坪镇会师",
-      "place": "陕西延川",
-      "shoot": "永坪会师纪念地，或红十五军团成立旧址",
-      "title": "",
-      "author": "",
-      "license": "",
-      "source": "",
-      "note": "红25军长征终点。红25军影像资料最少，有这一张即可覆盖该部队的高潮节点"
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-yongping-01.jpeg",
+          "title": "延川永坪会师标志碑",
+          "sourceLabel": "来源：延安市委党史研究室"
+        },
+        {
+          "file": "red25/r25-yongping-02.jpeg",
+          "title": "永坪会师纪念馆广场雕像群"
+        }
+      ]
+    },
+    "r1-ruijin": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-ruijin-01.png",
+          "title": "瑞金市中央苏区旧址"
+        },
+        {
+          "file": "red1/r1-ruijin-02.jpeg",
+          "title": "瑞金武阳围渡口",
+          "sourceLabel": "来源：中国军网"
+        }
+      ]
+    },
+    "r1-xinfeng": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-xinfeng-01.png",
+          "title": "遗址",
+          "sourceLabel": "来源：今日头条《中央红军突破国民党军一道封锁线的时间、地点、重大战役 》-羡雲鹤"
+        },
+        {
+          "file": "red1/r1-xinfeng-02.png",
+          "title": "百石村红三军团第四师师长洪超墓",
+          "sourceLabel": "来源：今日头条《中央红军突破国民党军一道封锁线的时间、地点、重大战役 》-羡雲鹤"
+        }
+      ]
+    },
+    "r1-rucheng": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-rucheng-01.jpeg",
+          "title": "中央红军司令部驻汝城县旧址",
+          "sourceLabel": "来源：中国共产新闻网"
+        },
+        {
+          "file": "red1/r1-rucheng-02.jpeg",
+          "title": "城口旧照",
+          "sourceLabel": "来源：中国共产党新闻网"
+        }
+      ]
+    },
+    "r1-chenzhou": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-chenzhou-01.png",
+          "title": "中央红军长征突破第三道封锁线指挥部旧址",
+          "sourceLabel": "来源：今日头条《中央红军突破第三道封锁线的时间、地点、重大战役 》"
+        }
+      ]
+    },
+    "r1-tongdao": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-tongdao-01.jpeg",
+          "title": "通道会议"
+        },
+        {
+          "file": "red1/r1-tongdao-02.jpeg",
+          "title": "通道会议"
+        },
+        {
+          "file": "red1/r1-tongdao-03.png",
+          "title": "通道会议"
+        }
+      ]
+    },
+    "r1-liping": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-liping-01.jpeg",
+          "title": "黎平会议会址"
+        },
+        {
+          "file": "red1/r1-liping-02.jpeg",
+          "title": "《中共中央政治局关于战略方针之决定》",
+          "sourceLabel": "来源：中国军网"
+        }
+      ]
+    },
+    "r1-houchang": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-houchang-01.jpeg",
+          "title": "猴场会议"
+        }
+      ]
+    },
+    "r1-wujiang": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-wujiang-01.jpeg",
+          "title": "强渡乌江"
+        },
+        {
+          "file": "red1/r1-wujiang-02.jpeg",
+          "title": "",
+          "sourceLabel": "来源：中国军网"
+        },
+        {
+          "file": "red1/r1-wujiang-03.png",
+          "title": "竹筏渡江雕塑",
+          "sourceLabel": "来源：新华网"
+        }
+      ]
+    },
+    "r1-chishui1": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-chishui1-01.png",
+          "title": "",
+          "sourceLabel": "来源：网易号《最详细介绍一渡赤水，让你清晰看懂伟人的智慧 》-小彭美识"
+        },
+        {
+          "file": "red1/r1-chishui1-02.png",
+          "title": "土城渡口"
+        }
+      ]
+    },
+    "r1-chishui2": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-chishui2-01.png",
+          "title": "二渡赤水"
+        },
+        {
+          "file": "red1/r1-chishui2-02.png",
+          "title": "二渡赤水"
+        }
+      ]
+    },
+    "r1-loushanguan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-loushanguan-01.jpeg",
+          "title": "遵义战役·娄山关"
+        },
+        {
+          "file": "red1/r1-loushanguan-02.jpeg",
+          "title": "",
+          "sourceLabel": "来源：学习强国学习平台"
+        },
+        {
+          "file": "red1/r1-loushanguan-03.jpeg",
+          "title": "",
+          "sourceLabel": "来源：搜狐《遵义战役：红军长征中首次大捷》-天眼新闻"
+        }
+      ]
+    },
+    "r1-chishui3": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-chishui3-01.jpeg",
+          "title": "三渡赤水"
+        },
+        {
+          "file": "red1/r1-chishui3-02.jpeg",
+          "title": "三渡赤水"
+        }
+      ]
+    },
+    "r1-wujiang2": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-wujiang2-01.jpeg",
+          "title": "南渡乌江"
+        }
+      ]
+    },
+    "r1-jiaopingdu": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-jiaopingdu-01.jpeg",
+          "title": "",
+          "sourceLabel": "来源：中国国家博物馆"
+        },
+        {
+          "file": "red1/r1-jiaopingdu-02.png",
+          "title": "巧渡金沙江"
+        },
+        {
+          "file": "red1/r1-jiaopingdu-03.jpeg",
+          "title": "",
+          "sourceLabel": "来源：摄图网"
+        }
+      ]
+    },
+    "r1-huili": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-huili-01.png",
+          "title": "会理会议"
+        },
+        {
+          "file": "red1/r1-huili-02.png",
+          "title": "会理会议"
+        }
+      ]
+    },
+    "r1-yihai": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-yihai-01.jpeg",
+          "title": "彝海结盟"
+        }
+      ]
+    },
+    "r1-anshunchang": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-anshunchang-01.png",
+          "title": "",
+          "sourceLabel": "来源：新华每日电讯"
+        },
+        {
+          "file": "red1/r1-anshunchang-02.jpeg",
+          "title": "强渡大渡河"
+        }
+      ]
+    },
+    "r1-maogong": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-maogong-01.jpeg",
+          "title": "懋功会师"
+        }
+      ]
+    },
+    "r1-lianghekou": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-lianghekou-01.jpeg",
+          "title": "两河口会议"
+        },
+        {
+          "file": "red1/r1-lianghekou-02.jpeg",
+          "title": "",
+          "sourceLabel": "来源：澎湃新闻《【红色文化】红军长征中的两河口会议》-方志四川"
+        },
+        {
+          "file": "red1/r1-lianghekou-03.jpeg",
+          "title": "《中共中央政治局关于红一、红四方面军会合后的战略方针的决定》档案",
+          "sourceLabel": "来源：中央档案馆"
+        }
+      ]
+    },
+    "r1-luhua": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-luhua-01.png",
+          "title": "芦花会议"
+        }
+      ]
+    },
+    "r1-shawo": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-shawo-01.jpeg",
+          "title": "沙窝会议"
+        }
+      ]
+    },
+    "r1-maoergai": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-maoergai-01.png",
+          "title": "毛儿盖会议"
+        }
+      ]
+    },
+    "r1-baozuo": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-baozuo-01.jpeg",
+          "title": "包座战斗"
+        }
+      ]
+    },
+    "r1-ejie": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-ejie-01.jpeg",
+          "title": "俄界会议"
+        }
+      ]
+    },
+    "r1-lazikou": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-lazikou-01.jpeg",
+          "title": "腊子口战斗"
+        },
+        {
+          "file": "red1/r1-lazikou-02.jpeg",
+          "title": "腊子口战斗"
+        },
+        {
+          "file": "red1/r1-lazikou-03.png",
+          "title": "油画《突破腊子口》局部  晏阳 李武  作"
+        }
+      ]
+    },
+    "r1-bangluo": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red1/r1-bangluo-01.jpeg",
+          "title": "榜罗镇会议"
+        }
+      ]
+    },
+    "r25-huashanzhai": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-huashanzhai-01.jpeg",
+          "title": "河南光山花山寨会议旧址——红25军长征决策地"
+        }
+      ]
+    },
+    "r25-hejiachong": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-hejiachong-01.jpeg",
+          "title": "何家冲何氏祠——红25军军部旧址",
+          "sourceLabel": "来源：新华社摄"
+        }
+      ]
+    },
+    "r25-dushuzhen": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-dushuzhen-01.jpeg",
+          "title": "方城独树镇战斗纪念碑"
+        },
+        {
+          "file": "red25/r25-dushuzhen-02.jpeg",
+          "title": "独树镇纪念馆正门"
+        }
+      ]
+    },
+    "r25-yujiahe": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-yujiahe-01.jpeg",
+          "title": "丹凤庾家河战斗纪念碑 · 七里荫岭"
+        },
+        {
+          "file": "red25/r25-yujiahe-02.jpeg",
+          "title": "丹凤庾家河会议旧址——春茂永中药铺"
+        },
+        {
+          "file": "red25/r25-yujiahe-03.jpeg",
+          "title": "庾家河会议旧址内景"
+        }
+      ]
+    },
+    "r25-eyushan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-eyushan-01.jpeg",
+          "title": "山阳袁家沟口——鄂陕边区苏维埃政府纪念碑"
+        }
+      ]
+    },
+    "r25-longde": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-longde-01.jpeg",
+          "title": "六盘山红军长征纪念碑",
+          "sourceLabel": "来源：新华社摄"
+        },
+        {
+          "file": "red25/r25-longde-02.jpeg",
+          "title": "六盘山红军长征纪念馆",
+          "sourceLabel": "来源：人民网"
+        }
+      ]
+    },
+    "r25-sipocun": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red25/r25-sipocun-01.jpeg",
+          "title": "河南新县吴焕先烈士墓"
+        }
+      ]
+    },
+    "r26-liujiaping": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image1.jpg",
+          "title": "张家界 一起探寻 多彩 长征文化小镇刘家坪",
+          "sourceLabel": "来源：红网",
+          "source": "https://hn.rednet.cn/content/2021/05/12/9331514.html"
+        },
+        {
+          "file": "red26-red4/image2.jpg",
+          "title": "湖南省桑植县刘家坪乡 红二方面军长征出发地",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/G3GUC91105428WKE.html"
+        }
+      ]
+    },
+    "r26-lishui": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image3.jpg",
+          "title": "红色教育 红军长征在新化留下了一张珍贵的相片",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/346690621_120055"
+        },
+        {
+          "file": "red26-red4/image4.jpg",
+          "title": "徒步雪峰山④丨溆浦茶马古道 重走红军路",
+          "sourceLabel": "来源：红网",
+          "source": "https://hn.rednet.cn/content/2019/05/04/5405815.html"
+        }
+      ]
+    },
+    "r26-xiangzhong": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image3.jpg",
+          "title": "红色教育 红军长征在新化留下了一张珍贵的相片",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/346690621_120055"
+        },
+        {
+          "file": "red26-red4/image4.jpg",
+          "title": "徒步雪峰山④丨溆浦茶马古道 重走红军路",
+          "sourceLabel": "来源：红网",
+          "source": "https://hn.rednet.cn/content/2019/05/04/5405815.html"
+        }
+      ]
+    },
+    "r26-shiqian": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image5.jpg",
+          "title": "石阡 红二六军团旧址入选 全国红色旅游经典景区 建设项目",
+          "sourceLabel": "来源：多彩贵州网",
+          "source": "http://tr.gog.cn/system/2017/10/16/016166357.shtml"
+        },
+        {
+          "file": "red26-red4/image6.jpg",
+          "title": "重推 全省红色旅游文化经典线路之石阡篇",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/428346089_239662"
+        }
+      ]
+    },
+    "r26-qianxuan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image7.jpg",
+          "title": "多彩贵州网 所有毕节人,这个地方可以免费参观啦",
+          "sourceLabel": "来源：多彩贵州网贵州频道",
+          "source": "http://news.gog.cn/system/2020/05/20/017616042.shtml"
+        },
+        {
+          "file": "red26-red4/image8.jpg",
+          "title": "毕节曾经有群人,上演现实版谍战大戏,助力红军转战黔西北",
+          "sourceLabel": "来源：手机搜狐",
+          "source": "http://m.sohu.com/a/85584392_398039"
+        }
+      ]
+    },
+    "r26-wumengshan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image9.jpg",
+          "title": "虎头山战斗 红军在云南境内最大的一次战斗",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/476959481_121106902"
+        },
+        {
+          "file": "red26-red4/image10.jpg",
+          "title": "虎头山战斗 红军在云南境内最大的一次战斗",
+          "sourceLabel": "来源：保山日报网",
+          "source": "https://www.baoshandaily.com/html/20210714/content_162623244085843.html"
+        }
+      ]
+    },
+    "r26-panxian": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image11.jpg",
+          "title": "红军长征到盘县",
+          "sourceLabel": "来源：人民网",
+          "source": "http://gz.people.com.cn/n2/2016/0630/c369574-28590225-2.html"
+        },
+        {
+          "file": "red26-red4/image12.jpg",
+          "title": "当年红军长征途经盘县亦资孔时,曾在此大树下召开济贫会",
+          "sourceLabel": "来源：六盘水市人民政府",
+          "source": "http://www.gzlps.gov.cn/art/2008/9/23/art_18650_434122.html"
+        }
+      ]
+    },
+    "r26-dianzhong": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image13.jpg",
+          "title": "云南寻甸 红军长征两次在这里留下光辉足迹",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/GB6481LM0514R9NO.html?f=post2020_dy_recommends"
+        },
+        {
+          "file": "red26-red4/image14.jpg",
+          "title": "中国红 英雄城 昆明 长征精神永放光芒",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/rain/a/20210505A074GX00"
+        }
+      ]
+    },
+    "r26-shigu": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image15.jpg",
+          "title": "云南省石鼓渡口",
+          "sourceLabel": "来源：南昌文明网",
+          "source": "http://nc.wenming.cn/wmbb/201609/t20160912_2821927.html"
+        },
+        {
+          "file": "red26-red4/image16.jpg",
+          "title": "石鼓镇的红色记忆",
+          "sourceLabel": "来源：搜狐圈子",
+          "source": "http://q.sohu.com/forum/7/topic/50922900/watchs"
+        }
+      ]
+    },
+    "r26-zhongdian": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image17.jpg",
+          "title": "2019迪庆红军长征博物馆门票,香格里拉迪庆红军长征博物馆游玩攻略,迪庆红军长征博物馆游览攻略路线 地址 门票价格",
+          "sourceLabel": "来源：去哪儿",
+          "source": "http://touch.go.qunar.com/poi/8669788?bd_source=xunbo"
+        },
+        {
+          "file": "red26-red4/image18.jpg",
+          "title": "人民日报海外版-人民网",
+          "sourceLabel": "来源：人民网",
+          "source": "http://paper.people.com.cn/rmrbhwb/html/2016-09/20/content_1713580.htm"
+        }
+      ]
+    },
+    "r26-daxueshan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image19.jpg",
+          "title": "恶劣天气登顶哈巴雪山 哈巴玉龙两峰连登 虎跳峡 丽江 人生第一座雪山",
+          "sourceLabel": "来源：户外资料网",
+          "source": "http://www.8264.com/viewnews-127819-page-1.html"
+        },
+        {
+          "file": "red26-red4/image20.jpg",
+          "title": "恶劣天气登顶哈巴雪山 哈巴玉龙两峰连登 虎跳峡 丽江 人生第一座雪山",
+          "sourceLabel": "来源：户外资料网",
+          "source": "http://www.8264.com/youji/5454689.html"
+        }
+      ]
+    },
+    "r26-jiawa": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image21.jpg",
+          "title": "甲洼向阳寺红色陈列馆正式开馆啦",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/480424107_121123767"
+        },
+        {
+          "file": "red26-red4/image22.jpg",
+          "title": "甲洼向阳寺红色陈列馆正式开馆啦",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/480424107_121123767"
+        }
+      ]
+    },
+    "r26-rongbacha": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image23.jpg",
+          "title": "1936年6月30日 红二 红六军团与红四方面军会师",
+          "sourceLabel": "来源：网易新闻",
+          "source": "http://news.163.com/06/0628/10/2KMQ8PI500011EBF.html"
+        },
+        {
+          "file": "red26-red4/image24.jpg",
+          "title": "历史 红军长征曾这样走过康巴白玉",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/277710390_100152393"
+        }
+      ]
+    },
+    "r26-caodi2": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image29.jpg",
+          "title": "川主寺镇瞻仰红军长征纪念总碑",
+          "sourceLabel": "来源：每日甘肃网",
+          "source": "http://china.gansudaily.com.cn/system/2016/09/14/016390291.shtml"
+        },
+        {
+          "file": "red26-red4/image30.jpg",
+          "title": "第七站 草地,冲破漫漫长路的最黑暗时刻",
+          "sourceLabel": "来源：新浪网",
+          "source": "https://news.sina.com.cn/o/2006-10-19/021010269585s.shtml"
+        }
+      ]
+    },
+    "r26-gannan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image31.jpg",
+          "title": "长征过陇南, 红二方面军在成县的红色传奇",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/204045700_488518"
+        },
+        {
+          "file": "red26-red4/image32.jpg",
+          "title": "党史学习教育丨成县红二方面军长征纪念馆",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/464296440_121106869"
+        }
+      ]
+    },
+    "r4-fujiang": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image42.jpg",
+          "title": "北川红色文化 当年,红军曾穿越这里",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/336306480_737818"
+        },
+        {
+          "file": "red26-red4/image43.jpg",
+          "title": "追寻红迹 国庆大假 都江堰5名红色会员赴川西北参观考察红军战斗遗址",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/news/LQDJYSCZLSWHYJHHC/1710916510EH668K3A4CF8ECFE3D61.html"
+        }
+      ]
+    },
+    "r4-tumen": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image44.jpg",
+          "title": "回溯重走红四方面军长征路全程 追随父亲脚步",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/news/TIANJINGDL/2019/6/19617105932JK96191EBE2BC5DCJJA4.html"
+        },
+        {
+          "file": "red26-red4/image45.jpg",
+          "title": "青阳 红四方面军西进岷江峡谷路线考略",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/435737113_120743388"
+        }
+      ]
+    },
+    "r4-maogong": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image46.jpg",
+          "title": "自驾重走长征路寻访专集 96 小金县城,一 四方面军大会师",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/news/TIANJINGDL/1557142912E0B3FA6G5F94AFD4K2AJ_2.html"
+        },
+        {
+          "file": "red26-red4/image46.jpg",
+          "title": "自驾重走长征路寻访专集 96 小金县城,一 四方面军大会师",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/news/TIANJINGDL/1557142912E0B3FA6G5F94AFD4K2AJ_2.html"
+        }
+      ]
+    },
+    "r4-dawei": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image47.jpg",
+          "title": "川西小环线6,达维会师桥,88年前红军长征翻越夹金山在此会师",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/v/video/VO3C3PSQH.html?spss=dy_author"
+        },
+        {
+          "file": "red26-red4/image48.jpg",
+          "title": "齐鲁红星 长征队第三次重走长征路胜利结束",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/232117179_300488"
+        }
+      ]
+    },
+    "r4-huishi": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image49.jpg",
+          "title": "寻访路上 懋功会师篇",
+          "sourceLabel": "来源：搜狐公众平台",
+          "source": "http://mt.sohu.com/20160911/n468182649.shtml"
+        },
+        {
+          "file": "red26-red4/image50.jpg",
+          "title": "小金县 红一 四方面军胜利大会师",
+          "sourceLabel": "来源：搜狐公众平台",
+          "source": "http://mt.sohu.com/20160724/n460777861.shtml"
+        }
+      ]
+    },
+    "r4-lianghekou": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image51.jpg",
+          "title": "走进红军长征两河口会议纪念馆",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/249295495_99965453"
+        },
+        {
+          "file": "red26-red4/image52.jpg",
+          "title": "红军长征两河口会议纪念馆馆藏石刻",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/249297792_99965453"
+        }
+      ]
+    },
+    "r4-luhua": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image53.jpg",
+          "title": "屈永志 四川作家诗人走进 红色 黑水",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/News/tgjx/2023/9/23915111625HH756D0K6C0I2FH3H8FE.html"
+        },
+        {
+          "file": "red26-red4/image54.jpg",
+          "title": "黑水探幽 文学川军黑水行 主题采风活动散记",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/News/jryw/2023/9/23914155338CCKC7I57GH6HB08J83H0.html"
+        }
+      ]
+    },
+    "r4-maoergai": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image55.jpg",
+          "title": "应重视红军长征纪念场地 遗址的建设和保护工作",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/News/jryw/1543113833BF58IH0BH7D4J4HE80I6_2.html"
+        },
+        {
+          "file": "red26-red4/image56.jpg",
+          "title": "松潘红色主题游 松潘行程推荐 松潘旅游攻略",
+          "sourceLabel": "来源：马蜂窝",
+          "source": "http://360.mafengwo.cn/t_t/6408-24297.html"
+        }
+      ]
+    },
+    "r4-caodi1": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image57.jpg",
+          "title": "纪念红军长征胜利80周年 松潘草地 第十五天 和王立华大校一起走长征路纪实",
+          "sourceLabel": "来源：昆仑策",
+          "source": "http://www.kunlunce.cn/ssjj/fl1/2016-10-03/108410.html"
+        },
+        {
+          "file": "red26-red4/image58.jpg",
+          "title": "90年过去了,当年红军长征时那块 吃人 的草地,如今怎么样了",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/J6TMTFGU055619ZA.html"
+        }
+      ]
+    },
+    "r4-aba": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image59.jpg",
+          "title": "若尔盖巴西会议纪念馆开馆 向党的97岁生日献礼",
+          "sourceLabel": "来源：网易",
+          "source": "https://m.163.com/dy/article/DLL6BIDP051492T3.html"
+        },
+        {
+          "file": "red26-red4/image60.jpg",
+          "title": "亲近 净土阿坝丨阿坝州九大文旅品牌 大长征",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/489945833_115960"
+        }
+      ]
+    },
+    "r4-zhuomudiao": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image61.jpg",
+          "title": "红色阿坝 金川的一条街,留存了13处红色革命遗址",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/omn/20210604/20210604A09K3L00.html"
+        },
+        {
+          "file": "red26-red4/image62.jpg",
+          "title": "红色阿坝 金川的一条街,留存了13处红色革命遗址",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/omn/20210604/20210604A09K3L00.html"
+        }
+      ]
+    },
+    "r4-suichongdanmao": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image63.jpg",
+          "title": "燕子 重走红四方面军第四军长征路 第一阶段",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/News/tgjx/14225105576HIG15EAK7AJ2CD3HCJJ_2.html"
+        },
+        {
+          "file": "red26-red4/image64.jpg",
+          "title": "甘孜州藏学研究所赴丹巴县进行实地调研",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/468710388_121119256"
+        }
+      ]
+    },
+    "r4-tianluyashan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image65.jpg",
+          "title": "2018红军长征翻越夹金山纪念馆门票,雅安红军长征翻越夹金山纪念馆游玩攻略,红军长征翻越夹金山纪念馆游览攻略路线 地址 门票价格",
+          "sourceLabel": "来源：去哪儿",
+          "source": "http://touch.go.qunar.com/poi/8595762?"
+        },
+        {
+          "file": "red26-red4/image66.jpg",
+          "title": "宝兴来了一群大人物........",
+          "sourceLabel": "来源：网易",
+          "source": "https://www.163.com/dy/article/G763KSH80545GCGM.html?f=post2020_dy_recommends"
+        }
+      ]
+    },
+    "r4-baizhangguan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image67.jpg",
+          "title": "央视 军事纪实 走进名山 述说百丈关光辉岁月",
+          "sourceLabel": "来源：才府",
+          "source": "http://sns.91ddcc.com/t/115910"
+        },
+        {
+          "file": "red26-red4/image68.jpg",
+          "title": "游仙 昔日忠魂埋骨地 而今茶香满名山",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/469097735_121011244"
+        }
+      ]
+    },
+    "r4-danglingshan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image69.jpg",
+          "title": "雪山忠骨 红四方面军忍痛放弃上千伤病员",
+          "sourceLabel": "来源：搜狐",
+          "source": "http://club.mil.news.sohu.com/zz0255/thread/!a653e60921cca540"
+        },
+        {
+          "file": "red26-red4/image70.jpg",
+          "title": "翻越雪山 红军怀揣什么 救命果",
+          "sourceLabel": "来源：中国网络电视台",
+          "source": "http://jishi.cntv.cn/20111228/100879_2.shtml"
+        }
+      ]
+    },
+    "r4-daofu": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image71.jpg",
+          "title": "2016 我的川藏之旅 四 丹巴 八美 道孚 炉霍 甘孜",
+          "sourceLabel": "来源：马蜂窝",
+          "source": "http://qq.mafengwo.cn/travels/info.php?id=6476612"
+        },
+        {
+          "file": "red26-red4/image72.jpg",
+          "title": "2016 我的川藏之旅 四 丹巴 八美 道孚 炉霍 甘孜",
+          "sourceLabel": "来源：马蜂窝",
+          "source": "http://qq.mafengwo.cn/travels/info.php?id=6476612"
+        }
+      ]
+    },
+    "r4-ganzi": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image26.jpg",
+          "title": "视觉四川 四川境内红军长征走过的地方,如今发生了哪些变化",
+          "sourceLabel": "来源：搜狐公众平台",
+          "source": "http://mt.sohu.com/20161020/n470826563.shtml"
+        },
+        {
+          "file": "red26-red4/image73.jpg",
+          "title": "寻访阿坝红军长征足迹",
+          "sourceLabel": "来源：川报观察",
+          "source": "https://cbgc.scol.com.cn/news/1771843"
+        },
+        {
+          "file": "red26-red4/image74.jpg",
+          "title": "军事图片库 胜利大会师 cybercreations",
+          "sourceLabel": "来源：解放军画报",
+          "source": "http://www.plapic.com.cn/lib/00008/200120j.htm"
+        },
+        {
+          "file": "red26-red4/image25.jpg",
+          "title": "红2 6军团与红4方面军会师旧址──甘孜",
+          "sourceLabel": "来源：人民网",
+          "source": "http://politics.people.com.cn/BIG5/8198/68298/68303/4635211.html"
+        }
+      ]
+    },
+    "r4-caodi3": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image75.jpg",
+          "title": "红军过草地爬雪山,你可知道那草地现在是什么样的吗",
+          "sourceLabel": "来源：北京时间",
+          "source": "http://item.btime.com/45vcb69vib09m7bgqqijblagmq6"
+        },
+        {
+          "file": "red26-red4/image57.jpg",
+          "title": "新华鲜报 红军长征穿越的松潘草地通动车了",
+          "sourceLabel": "来源：新华网四川频道",
+          "source": "http://www.sc.xinhuanet.com/20240831/1f79ece3d9ff416c9385fb632a0dac40/c.html"
+        }
+      ]
+    },
+    "r4-mintaoxi": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image76.jpg",
+          "title": "红四方面军长征在甘肃的历程",
+          "sourceLabel": "来源：每日甘肃网",
+          "source": "http://gansu.gansudaily.com.cn/system/2016/10/24/016474152.shtml"
+        },
+        {
+          "file": "red26-red4/image77.jpg",
+          "title": "重走红四方面军第四军长征路 组图",
+          "sourceLabel": "来源：凤凰博报",
+          "source": "http://blog.ifeng.com/article/45041246.html"
+        }
+      ]
+    },
+    "r4-tongzhuangjinghui": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image78.jpg",
+          "title": "红三十一军长征在通渭",
+          "sourceLabel": "来源：腾讯网",
+          "source": "https://new.qq.com/rain/a/20210919A0753X00"
+        },
+        {
+          "file": "red26-red4/image79.jpg",
+          "title": "红军长征在渭源",
+          "source": "https://www.gswycjc.com/article/show.asp?id=3218"
+        }
+      ]
+    },
+    "r4-shanchengbao": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image82.jpg",
+          "title": "环县山城堡战役纪念园通过国家aaa级旅游景区评定",
+          "sourceLabel": "来源：搜狐网",
+          "source": "http://www.sohu.com/a/286590223_120066780"
+        },
+        {
+          "file": "red26-red4/image83.jpg",
+          "title": "红军长征最后一战发生的地方 甘肃省环县山城堡考察记",
+          "sourceLabel": "来源：中红网",
+          "source": "http://www.crt.com.cn/news2007/news/LQDJYSCZLSWHYJHHC/1341410471339DH1DCG7IDCBKC7F4G0.html"
+        }
+      ]
+    },
+    "r4-baoan": {
+      "reviewed": true,
+      "images": [
+        {
+          "file": "red26-red4/image84.jpg",
+          "title": "延安志丹县 参观保安革命旧址",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/306741130_428863"
+        },
+        {
+          "file": "red26-red4/image85.jpg",
+          "title": "延安志丹县 参观保安革命旧址",
+          "sourceLabel": "来源：搜狐网",
+          "source": "https://www.sohu.com/a/306741130_428863"
+        }
+      ]
     }
   }
 }

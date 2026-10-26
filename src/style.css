@@ -10,29 +10,33 @@
    @theme 变量是否输出取决于构建期的使用分析，而本作品的配色全部写在语义化类里，
    不通过 Tailwind 颜色工具类消费，因此必须由自身显式声明，避免构建后被裁掉导致配色失效。 */
 :root {
-  --color-ink-950: #0a0608;
-  --color-ink-900: #0b1219;
-  --color-ink-800: #111b25;
-  --color-ink-700: #1a2733;
-  --color-ink-600: #24333f;
-  --color-mist-100: #e8eef4;
-  --color-mist-300: #b9c6d3;
-  --color-mist-500: #8b9aa9;
-  --color-mist-600: #6b7a89;
+  --color-ink-950: #171711;
+  --color-ink-900: #1c1a16;
+  --color-ink-800: #232019;
+  --color-ink-700: #2d281f;
+  --color-ink-600: #393228;
+  --color-mist-100: #f0e9d9;
+  --color-mist-300: #c5beaf;
+  --color-mist-500: #aaa28f;
+  --color-mist-600: #938a79;
   --color-flag-500: #d92b3a;
   --color-flag-400: #e5484d;
   --color-flag-300: #ff7b72;
-  --color-gold-400: #d4af37;
-  --color-gold-300: #e8c766;
+  --color-gold-400: #bfa16a;
+  --color-gold-300: #d8be88;
 
-  --panel-bg: rgba(24, 14, 17, 0.84);
-  --panel-bg-solid: #160f12;
-  --panel-border: rgba(180, 152, 158, 0.2);
-  --panel-border-strong: rgba(205, 172, 178, 0.32);
-  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
+  --panel-bg: rgba(33, 30, 24, 0.94);
+  --panel-bg-solid: #211e18;
+  --panel-border: rgba(190, 172, 137, 0.2);
+  --panel-border-strong: rgba(205, 184, 145, 0.36);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.22);
+  --radius-lg: 4px;
+  --radius-md: 3px;
+  --radius-sm: 3px;
+  --content-width: 1180px;
+  --reading-width: 1040px;
+  --page-title-size: 32px;
+  --page-padding: 40px max(5%, calc((100% - 1180px) / 2)) 56px;
   --font-sans: 'PingFang SC', 'HarmonyOS Sans SC', 'Source Han Sans SC', 'Noto Sans SC',
     'Microsoft YaHei', 'Hiragino Sans GB', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: 'Songti SC', 'Source Han Serif SC', 'Noto Serif SC', 'SimSun', Georgia, serif;
@@ -58,35 +62,18 @@ body {
   overscroll-behavior: none;
 }
 
-/* ---------- 全局背景：远山与星火的暗场氛围 ---------- */
+/* ---------- 全局背景：深墨、朱红与暖金的展陈基调 ---------- */
 .app-shell {
   position: relative;
-  min-height: 100%;
+  height: 100dvh;
+  min-width: 960px;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* 红黑基调：多处红色径向光叠加在暗红底上，呼应“星火/红旗”的意象。
-     地图要素本身仍保持冷色，靠色相差异保证省份边界与文字的可读性。 */
-  background:
-    radial-gradient(1200px 640px at 80% -12%, rgba(217, 43, 58, 0.36), transparent 64%),
-    radial-gradient(1000px 560px at 2% 104%, rgba(150, 28, 40, 0.3), transparent 62%),
-    radial-gradient(1700px 900px at 50% 120%, rgba(217, 43, 58, 0.18), transparent 72%),
-    radial-gradient(900px 480px at 12% -6%, rgba(212, 175, 55, 0.08), transparent 60%),
-    linear-gradient(180deg, #120709 0%, #170a0e 44%, #0b0507 100%);
+  background: #171711;
 }
 
-.app-shell::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-  background-size: 48px 48px;
-  -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 20%, transparent 78%);
-  mask-image: radial-gradient(circle at 50% 42%, #000 20%, transparent 78%);
-  z-index: 0;
-}
 
 .app-shell > * {
   position: relative;
@@ -98,8 +85,7 @@ body {
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
 }
 
 .panel--solid {
@@ -108,7 +94,7 @@ body {
 
 .panel-title {
   font-size: 13px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.02em;
   color: var(--color-mist-500);
   text-transform: uppercase;
 }
@@ -129,13 +115,13 @@ body {
 .lede {
   font-size: 15px;
   line-height: 1.85;
-  color: #cdd9e5;
+  color: var(--color-mist-300);
 }
 
 .prose-cn {
   font-size: 14.5px;
   line-height: 1.95;
-  color: #c6d3e0;
+  color: var(--color-mist-300);
   text-align: justify;
 }
 
@@ -146,7 +132,7 @@ body {
   justify-content: center;
   gap: 6px;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--panel-border-strong);
   background: rgba(255, 255, 255, 0.05);
   color: var(--color-mist-100);
@@ -159,7 +145,7 @@ body {
 
 .btn:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.11);
-  border-color: rgba(200, 220, 240, 0.45);
+  border-color: var(--panel-border-strong);
 }
 
 .btn:active:not(:disabled) {
@@ -173,13 +159,13 @@ body {
 
 .btn--primary {
   border-color: rgba(229, 72, 77, 0.6);
-  background: linear-gradient(180deg, rgba(217, 43, 58, 0.95), rgba(160, 24, 36, 0.95));
+  background: #934934;
   color: #fff;
-  box-shadow: 0 8px 22px rgba(217, 43, 58, 0.3);
+  box-shadow: none;
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: linear-gradient(180deg, #e5484d, #b02234);
+  background: #a5523d;
 }
 
 .btn--ghost {
@@ -197,66 +183,6 @@ body {
 .btn--sm {
   padding: 5px 10px;
   font-size: 12px;
-}
-
-/* ---------- 难度星级 ---------- */
-.stars {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  line-height: 1;
-}
-
-.stars__cell {
-  position: relative;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  font-size: 1em;
-}
-
-.stars__base {
-  position: absolute;
-  inset: 0;
-  display: block;
-  text-align: center;
-  font-size: 1em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.17);
-}
-
-/* 半星：用裁切容器限制实心星的可见宽度 */
-.stars__clip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-.stars__fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1em;
-  display: block;
-  text-align: center;
-  font-size: 1em;
-  line-height: 1;
-  color: var(--color-gold-400);
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-}
-
-.stars--sm {
-  font-size: 13px;
-}
-
-.stars--md {
-  font-size: 17px;
-}
-
-.stars--lg {
-  font-size: 24px;
 }
 
 /* ---------- 地图舞台 ---------- */
@@ -399,7 +325,7 @@ body {
 .army-card__note {
   font-size: 12.5px;
   line-height: 1.75;
-  color: #b6c4d2;
+  color: var(--color-mist-500);
 }
 
 .tag {
@@ -701,3 +627,8 @@ body {
     display: none !important;
   }
 }
+
+/* 所有可交互入口都提供清晰的键盘焦点。 */
+button, a, input, select, textarea { font-family: inherit; }
+:focus-visible { outline: 2px solid #d8be88; outline-offset: 5px; }
+::selection { color: #fff4e0; background: #94442f; }

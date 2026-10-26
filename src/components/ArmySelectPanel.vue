@@ -46,7 +46,7 @@ const collapsed = ref(false)
             <span class="picker__main">
               <span class="picker__name">
                 {{ army.name }}
-                <span v-if="army.alias" class="picker__alias">（{{ army.alias }}）</span>
+                
               </span>
               <span class="picker__meta">
                 <b>{{ START_LABEL[army.id] || army.startPlace }}</b>
@@ -56,13 +56,12 @@ const collapsed = ref(false)
               <span class="picker__note">{{ SPEC_NOTES[army.id] || army.summary }}</span>
             </span>
             <span class="picker__side">
-              <span class="picker__enter">进入 →</span>
+              <span class="picker__enter">查看</span>
             </span>
           </button>
         </li>
       </ul>
 
-      <p class="picker__foot">四支部队从不同起点出发，行程与遭遇各不相同。</p>
     </template>
   </section>
 </template>
@@ -94,7 +93,7 @@ const collapsed = ref(false)
   margin: 9px 0 0;
   font-size: 12px;
   line-height: 1.75;
-  color: #c3d0dd;
+  color: var(--color-mist-300);
 }
 
 .picker__list {
@@ -128,9 +127,9 @@ const collapsed = ref(false)
   gap: 8px;
   width: 100%;
   padding: 9px 10px 9px 14px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid var(--panel-border);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  background: #27231e;
   color: inherit;
   font-family: inherit;
   text-align: left;

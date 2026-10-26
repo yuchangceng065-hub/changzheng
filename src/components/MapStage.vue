@@ -1,7 +1,8 @@
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import * as echarts from 'echarts'
 import { NODE_KINDS, startPoints } from '../data/armies.js'
+import { createTerrainLayer, TERRAIN_SOURCE } from '../map/terrainLayer.js'
 
 const props = defineProps({
   /** loadBaseMap() 的返回结果 */
@@ -15,7 +16,16 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['select-start', 'select-node', 'ready'])
+// 使用专用名称，避免 ECharts 对名为 china 的地图额外补绘南海小框。
+const MAP_NAME = 'long-march-national-map'
 
+const terrainCanvasEl = ref(null)
+const terrainEnabled = ref(true)
+const terrainReady = ref(false)
+const terrainError = ref(false)
+const terrainVisible = computed(() => terrainEnabled.value && terrainReady.value)
+let terrainLayer = null
+let unmounted = false
 const canvasEl = ref(null)
 const chart = shallowRef(null)
 
@@ -52,45 +62,64 @@ function routeBounds(nodes) {
     minLat = Math.min(minLat, lat)
     maxLat = Math.max(maxLat, lat)
   }
-  const padLon = Math.max((maxLon - minLon) * 0.18, 1.5)
-  const padLat = Math.max((maxLat - minLat) * 0.2, 1.5)
+  const padLon = Math.max((maxLon - minLon) * 0.12, 0.8)
+  const padLat = Math.max((maxLat - minLat) * 0.12, 0.8)
   return [
     [minLon - padLon, minLat - padLat],
     [maxLon + padLon, maxLat + padLat]
   ]
 }
 
-/** 选部队页面：只框到大陆 + 台湾 + 海南岛 */
+/** 选部队页面包含底图全部要素，南海诸岛不排除在默认视野外。 */
 const HOME_BOUNDS = [
-  [73, 17.5],
-  [136, 54.5]
+  [73, 3],
+  [135.6, 54.1]
 ]
 
-/** 故事页面：以武汉一带为中心的「汉地十八省 + 四川」 */
-const JOURNEY_BOUNDS = [
-  [98, 20],
-  [126, 44]
-]
-
-/** 取两个取景框的并集，保证路线完整落在框内 */
-function unionBounds(a, b) {
-  if (!a) return b
-  if (!b) return a
-  return [
-    [Math.min(a[0][0], b[0][0]), Math.min(a[0][1], b[0][1])],
-    [Math.max(a[1][0], b[1][0]), Math.max(a[1][1], b[1][1])]
-  ]
-}
-
-/** 当前视图的目标取景框 */
 function targetBounds() {
-  if (props.army) return unionBounds(JOURNEY_BOUNDS, routeBounds(props.army.nodes))
-  return HOME_BOUNDS
+  return props.army ? routeBounds(props.army.nodes) : HOME_BOUNDS
 }
 
 /* ------------------------------------------------------------------ */
 /* 配置项                                                              */
 /* ------------------------------------------------------------------ */
+
+function mapAppearance() {
+  return {
+    itemStyle: {
+      areaColor: terrainVisible.value ? 'rgba(29, 37, 31, 0.12)' : '#26332f',
+      borderColor: terrainVisible.value ? 'rgba(229, 224, 203, 0.32)' : 'rgba(170, 185, 166, 0.45)',
+      borderWidth: 0.8,
+      shadowBlur: 0
+    },
+    emphasis: { itemStyle: { areaColor: terrainVisible.value ? 'rgba(231, 215, 176, 0.12)' : '#34453c' }, label: { show: false } },
+    select: { itemStyle: { areaColor: terrainVisible.value ? 'rgba(231, 215, 176, 0.12)' : '#34453c' }, label: { show: false } }
+  }
+}
+
+function applyTerrainMode() {
+  const c = chart.value
+  if (!c) return
+  // 重绘样式时明确保留读者已调整的视角。
+  const current = c.getOption().geo[0]
+  c.setOption({ geo: { ...mapAppearance(), center: current.center, zoom: current.zoom } }, { lazyUpdate: false })
+  scheduleOverlayRefresh()
+}
+
+function zoomMap(factor) {
+  const c = chart.value
+  if (!c) return
+  const current = c.getOption().geo[0]
+  const zoom = Math.max(0.8, Math.min(50, (current.zoom || 1) * factor))
+  userRoamed = true
+  c.setOption({ geo: { zoom, center: current.center } }, { lazyUpdate: false })
+  scheduleOverlayRefresh()
+}
+
+function resetView() {
+  userRoamed = false
+  scheduleFrame()
+}
 
 function buildOption() {
   const army = props.army
@@ -98,19 +127,11 @@ function buildOption() {
   const routeCoords = revealed.map((n) => n.coord)
 
   const geo = {
-    map: 'china',
+    map: MAP_NAME,
     // 允许鼠标滚轮缩放与拖动（由 HTML 覆盖层负责标记，标记不会因此错位）
     roam: true,
     scaleLimit: { min: 0.8, max: 50 },
-    itemStyle: {
-      areaColor: '#152230',
-      borderColor: 'rgba(150, 182, 208, 0.45)',
-      borderWidth: 0.9,
-      shadowColor: 'rgba(74, 157, 229, 0.22)',
-      shadowBlur: 26
-    },
-    emphasis: { itemStyle: { areaColor: '#1d2f40' }, label: { show: false } },
-    select: { itemStyle: { areaColor: '#1d2f40' }, label: { show: false } },
+    ...mapAppearance(),
     label: { show: false },
     zlevel: 0
   }
@@ -134,8 +155,8 @@ function buildOption() {
         opacity: 0.92,
         type: 'dashed',
         curveness: 0.12,
-        shadowBlur: 14,
-        shadowColor: army ? army.color : '#d92b3a'
+        shadowBlur: 4,
+        shadowColor: '#111b13'
       },
       effect: {
         show: routeCoords.length >= 2,
@@ -248,7 +269,6 @@ function frameTo(bounds) {
   if (Math.abs(nextZoom - curZoom) > 0.001) {
     c.setOption({ geo: { zoom: nextZoom, center } })
   }
-  updateDebugInfo()
 }
 
 let frameTimer = 0
@@ -333,6 +353,7 @@ function scheduleOverlayRefresh() {
   if (overlayFrame) cancelAnimationFrame(overlayFrame)
   overlayFrame = requestAnimationFrame(() => {
     overlayFrame = 0
+    terrainLayer?.draw(chart.value, terrainVisible.value)
     refreshOverlays()
   })
 }
@@ -340,42 +361,8 @@ function scheduleOverlayRefresh() {
 function handleResize() {
   chart.value && chart.value.resize()
   scheduleOverlayRefresh()
-  updateDebugInfo()
   // 只在读者还没自己调整过视角时重新取景；否则保留他当前看到的位置
   if (!userRoamed) scheduleFrame()
-}
-
-/* ------------------------------------------------------------------ */
-/* 取景自检读数（?debug）                                               */
-/* ------------------------------------------------------------------ */
-
-const SHOW_DEBUG = (() => {
-  try {
-    return new URLSearchParams(window.location.search).has('debug')
-  } catch {
-    return false
-  }
-})()
-
-const debugInfo = ref('')
-
-function updateDebugInfo() {
-  if (!SHOW_DEBUG) return
-  const c = chart.value
-  if (!c) return
-  const w = c.getWidth()
-  const h = c.getHeight()
-  const tl = c.convertFromPixel({ geoIndex: 0 }, [0, 0])
-  const br = c.convertFromPixel({ geoIndex: 0 }, [w, h])
-  if (!tl || !br || !Number.isFinite(tl[0]) || !Number.isFinite(br[0])) {
-    debugInfo.value = '视野：读取失败'
-    return
-  }
-  const target = props.army ? '故事（汉地十八省）' : '选部队（大陆+台湾+海南）'
-  debugInfo.value =
-    `取景目标 ${target}｜实际视野 ` +
-    `${br[0].toFixed(1)}–${tl[0].toFixed(1)}°E / ` +
-    `${br[1].toFixed(1)}–${tl[1].toFixed(1)}°N｜画布 ${w}×${h}`
 }
 
 /* ------------------------------------------------------------------ */
@@ -383,7 +370,14 @@ function updateDebugInfo() {
 /* ------------------------------------------------------------------ */
 
 onMounted(async () => {
-  echarts.registerMap('china', mergedGeoJSON())
+  const geo = mergedGeoJSON()
+  echarts.registerMap(MAP_NAME, geo)
+  terrainLayer = createTerrainLayer(terrainCanvasEl.value, geo)
+  terrainLayer.load().then(() => {
+    if (!unmounted) terrainReady.value = true
+  }).catch(() => {
+    if (!unmounted) terrainError.value = true
+  })
   rebuildChart()
   await nextTick()
   scheduleOverlayRefresh()
@@ -392,12 +386,16 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  unmounted = true
+  terrainLayer?.dispose()
   window.removeEventListener('resize', handleResize)
   if (overlayFrame) cancelAnimationFrame(overlayFrame)
   if (frameTimer) clearTimeout(frameTimer)
   chart.value && chart.value.dispose()
   chart.value = null
 })
+
+watch([terrainEnabled, terrainReady], applyTerrainMode)
 
 // 切换部队 / 视图：整体重建实例
 watch(
@@ -418,7 +416,23 @@ watch(
 
 <template>
   <div class="map-stage">
+    <canvas ref="terrainCanvasEl" class="map-stage__terrain" aria-hidden="true" />
     <div ref="canvasEl" class="map-stage__canvas" />
+    <div class="map-tools" aria-label="地图显示与缩放">
+      <div class="map-tools__modes" role="group" aria-label="底图样式">
+        <button type="button" :aria-pressed="terrainEnabled" @click="terrainEnabled = true">地形</button>
+        <button type="button" :aria-pressed="!terrainEnabled" @click="terrainEnabled = false">简图</button>
+      </div>
+      <div class="map-tools__zoom" role="group" aria-label="地图缩放">
+        <button type="button" aria-label="放大地图" @click="zoomMap(1.4)">+</button>
+        <button type="button" aria-label="缩小地图" @click="zoomMap(1 / 1.4)">−</button>
+        <button type="button" @click="resetView">复位</button>
+      </div>
+    </div>
+    <p class="terrain-credit">
+      <a v-if="terrainVisible" :href="TERRAIN_SOURCE" target="_blank" rel="noopener noreferrer">地形晕渲 · Natural Earth</a>
+      <span v-else-if="terrainEnabled && !terrainReady">{{ terrainError ? '地形加载失败，可切换简图' : '正在加载地形…' }}</span>
+    </p>
 
     <!-- 选部队：起点标记。点击即选中该部队 -->
     <button
@@ -452,12 +466,24 @@ watch(
       <span class="node-pin__label">{{ p.node.name }}</span>
     </button>
 
-    <!-- 取景自检读数：仅在 URL 带 ?debug 时出现 -->
-    <p v-if="SHOW_DEBUG && debugInfo" class="map-debug">{{ debugInfo }}</p>
   </div>
 </template>
 
 <style scoped>
+.map-stage { background: #171e1c; overflow: hidden; }
+.map-stage__terrain { position: absolute; inset: 0; pointer-events: none; filter: brightness(.78) saturate(.62); }
+.map-stage__canvas { position: relative; }
+.map-tools { position: absolute; top: 12px; right: 12px; display: flex; flex-direction: column; align-items: end; gap: 8px; z-index: 9; }
+.map-tools__modes, .map-tools__zoom { display: flex; border: 1px solid #8e997768; border-radius: 4px; overflow: hidden; background: #18221dec; }
+.map-tools button { border: 0; border-right: 1px solid #8e997736; background: transparent; color: #d9dccb; padding: 7px 10px; font: inherit; font-size: 11px; cursor: pointer; }
+.map-tools button:last-child { border-right: 0; }
+.map-tools button:hover { background: #4b604452; }
+.map-tools button[aria-pressed="true"] { color: #f0e6ca; background: #5c66505e; }
+.map-tools__zoom button { min-width: 31px; }
+.terrain-credit { position: absolute; bottom: 10px; left: 12px; z-index: 7; margin: 0; font-size: 10px; }
+.terrain-credit a, .terrain-credit span { display: block; padding: 4px 7px; color: #ccd0bc; background: #17211ccc; border-radius: 3px; text-decoration: none; }
+.terrain-credit a:hover { text-decoration: underline; }
+
 /* ---------- 起点标记 ---------- */
 /* ⚠ 锚点是**圆点**，不是整颗胶囊。
    这颗标记是"圆点 + 文字"的胶囊，若用 translate(-50%,-50%) 居中的是整颗胶囊，
@@ -579,20 +605,4 @@ watch(
   border-color: var(--node-color, #9aa7b4);
 }
 
-/* ---------- 取景自检读数（?debug） ---------- */
-.map-debug {
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  z-index: 8;
-  margin: 0;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-family: ui-monospace, Menlo, Consolas, monospace;
-  font-size: 10.5px;
-  line-height: 1.45;
-  color: #ffe6a8;
-  background: rgba(8, 4, 6, 0.88);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-}
 </style>

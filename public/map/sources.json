@@ -1,30 +1,27 @@
 {
-  "id": "cn-provinces-vector",
-  "description": "中国省级行政区划矢量底图（GeoJSON，FeatureCollection），用于《长征征途》地图渲染。底图按来源原样使用，未对任何边界、岛屿或海岸线作增删与简化。",
-  "publisher": "使用者指定来源",
-  "url": "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",
-  "obtainedAt": "2026-10-08",
-  "license": "以来源声明为准",
-  "requiredFeatures": [
-    "台湾省",
-    "海南省",
-    "南海诸岛"
-  ],
-  "standardMapNote": "如用于正式参赛、公开发布或出版，请以自然资源部标准地图服务网站（bzdt.ch.mnr.gov.cn）发布的带审图号标准地图为准，并按要求标注审图号。",
-  "checks": {
-    "featureCount": 35,
-    "hasTaiwan": true,
-    "hasHainan": true,
-    "hasNanhaiFeature": true,
-    "nanhaiFeatureNames": [
-      "海南省"
-    ],
-    "dashConfirmed": true,
-    "dashEvidence": "按 adcode 识别（100000_JD）",
-    "matchedNames": [
-      "海南省",
-      "台湾省",
-      "<无名称 adcode=100000_JD>"
-    ]
-  }
+  "title": "中国省级行政区划及境界线",
+  "publisher": "国家地理信息公共服务平台 天地图",
+  "url": "https://cloudcenter.tianditu.gov.cn/administrativeDivision/",
+  "terrain": {
+    "title": "Natural Earth II 地形晕渲",
+    "publisher": "Natural Earth",
+    "url": "https://www.naturalearthdata.com/downloads/50m-raster-data/50m-natural-earth-2/",
+    "license": "Public Domain"
+  },
+  "coordinates": {
+    "title": "GeoNames 地名坐标",
+    "publisher": "GeoNames",
+    "url": "https://www.geonames.org/",
+    "license": "CC BY 4.0"
+  },
+  "reviewNumber": null,
+  "sourceOnlineMapReviewNumber": "GS（2026）4921号",
+  "sourceOnlineMapReviewScope": "此号对应天地图来源页面的在线底图，不代表本站本地行政区划数据、地形及长征路线组合地图已获审图。",
+  "reviewStatus": "本站为基于天地图行政区划数据制作的长征路线交互示意，未取得独立审图号。官方在线底图的审图号不转用于本地矢量数据及组合地图。",
+  "sourceNotice": "天地图行政区划可视化服务标注数据更新时间为2026年10月，局部数据更新，仅供地图可视化使用。本版使用其全国省级行政区划及境界线数据，保留原始坐标与几何要素。",
+  "sourceDocumentation": "https://cloudcenter.tianditu.gov.cn/administrativeDivision/",
+  "dataUpdated": "2026-10",
+  "retrievedDate": "2026-10-20",
+  "dataEndpoint": "https://cloudcenter.tianditu.gov.cn/api/portal/region/map?gb=156000000&level=2",
+  "sha256": "aebcd73acc1bae5ca7161a5cd87b2c61e0387984c959a2c84c237e33f161f613"
 }

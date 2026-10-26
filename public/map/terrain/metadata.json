@@ -1,0 +1,19 @@
+{
+  "title": "Natural Earth II 地形晕渲",
+  "projection": "EPSG:4326 / Plate Carrée",
+  "bounds": {
+    "west": 72,
+    "east": 137,
+    "south": 2,
+    "north": 56
+  },
+  "dimensions": [
+    1950,
+    1620
+  ],
+  "version": "3.2.0",
+  "source": "https://www.naturalearthdata.com/downloads/50m-raster-data/50m-natural-earth-2/",
+  "download": "https://naciscdn.org/naturalearth/50m/raster/NE2_50M_SR_W.zip",
+  "license": "Public Domain",
+  "note": "从原始带世界文件的栅格数据按经纬度提取区域，地形晕渲与理想化地表覆盖配色；用于宏观地貌展示，不是卫星影像或等高线测量数据。"
+}
